@@ -1,0 +1,727 @@
+
+<!doctype html>
+<html lang="en" data-theme="midnight">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151126">
+  <meta name="description" content="Noor Babar Sabri — Web Developer & Designer portfolio">
+  <title>Noor Babar Sabri | Web Developer & Designer</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* CSS-only responsive hamburger menu */
+    .menu-check {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    .hamburger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 10px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel, var(--page));
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      border-radius: 5px;
+      background: var(--accent);
+      transition: transform .3s ease, opacity .2s ease;
+    }
+
+    .menu-check:checked + .hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-check:checked + .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-check:checked + .hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .menu-check:focus-visible + .hamburger {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 900px) {
+      header .nav {
+        position: relative;
+        flex-wrap: wrap;
+      }
+
+      .hamburger {
+        display: flex;
+        order: 2;
+      }
+
+      .navright {
+        order: 3;
+      }
+
+      header .navlinks {
+        display: flex;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--page);
+        box-shadow: 0 16px 35px rgba(0,0,0,.12);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity .25s ease,
+                    transform .25s ease,
+                    visibility .25s ease;
+        z-index: 45;
+      }
+
+      .menu-check:checked ~ #mobile-nav {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      header .navlinks a {
+        display: block;
+        padding: 12px;
+        border-radius: 9px;
+      }
+
+      header .navlinks a:hover {
+        background: color-mix(in srgb, var(--accent) 10%, transparent);
+      }
+    }
+
+    @media (max-width: 480px) {
+      header .nav {
+        gap: 8px;
+      }
+
+      .brand {
+        gap: 7px;
+        font-size: 12px;
+      }
+
+      .brand small {
+        font-size: 10px;
+      }
+
+      .logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .navright {
+        gap: 6px;
+      }
+
+      .navright > .pill {
+        padding: 10px 11px;
+        font-size: 11px;
+      }
+
+      .theme-toggle {
+        min-width: 38px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hamburger span,
+      header .navlinks {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap nav">
+
+    <a class="brand" href="#home">
+      <span class="logo">NBS</span>
+      <span>
+        Noor Babar Sabri
+        <small>Web Developer & Designer</small>
+      </span>
+    </a>
+
+    <!-- CSS-only hamburger -->
+    <input type="checkbox" id="menu-check" class="menu-check">
+
+    <label for="menu-check" class="hamburger"
+           aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="navlinks" id="mobile-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="navright">
+
+      <div class="theme-menu" id="themeMenu">
+        <button class="theme-toggle" id="themeMenuToggle"
+                aria-label="Choose a theme"
+                aria-expanded="false"
+                title="Choose a theme">
+          ✿ <span>Theme</span>
+        </button>
+
+        <div class="theme-dropdown" id="themeDropdown"
+             aria-label="Choose a color theme">
+
+          <button class="theme-choice" data-theme-choice="rose" title="Rose">
+            <i class="dot" style="--dot:#ec4899"></i>
+            <span>Rose</span>
+          </button>
+
+          <button class="theme-choice" data-theme-choice="ocean" title="Ocean">
+            <i class="dot" style="--dot:#159ac5"></i>
+            <span>Ocean</span>
+          </button>
+
+          <button class="theme-choice" data-theme-choice="lavender" title="Lavender">
+            <i class="dot" style="--dot:#a477ef"></i>
+            <span>Lavender</span>
+          </button>
+
+          <button class="theme-choice" data-theme-choice="emerald" title="Emerald">
+            <i class="dot" style="--dot:#199b7b"></i>
+            <span>Emerald</span>
+          </button>
+
+          <button class="theme-choice" data-theme-choice="sunset" title="Sunset">
+            <i class="dot" style="--dot:#f47752"></i>
+            <span>Sunset</span>
+          </button>
+
+          <button class="theme-choice" data-theme-choice="midnight" title="Midnight">
+            <i class="dot" style="--dot:#514b79"></i>
+            <span>Midnight</span>
+          </button>
+
+          <button class="theme-choice" data-theme-choice="gold" title="Gold">
+            <i class="dot" style="--dot:#d5a13d"></i>
+            <span>Gold</span>
+          </button>
+        </div>
+      </div>
+
+      <a class="pill" href="#contact">Let's Talk ↗</a>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="eyebrow">✦ Assalam o Alaikum 👋</div>
+
+        <h1>
+          I’m <span>Noor Babar Sabri</span><br>
+          Web Developer
+        </h1>
+
+        <p>
+          I build thoughtful, responsive and user-friendly websites
+          that turn ideas into polished digital experiences.
+        </p>
+
+        <div class="actions">
+          <a class="pill" href="#projects">Explore My Work ↗</a>
+          <a class="outline" href="#contact">Start a Project ✉</a>
+        </div>
+
+        <div class="socials" aria-label="Social profiles">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><b>GH</b></a>
+          <a href="https://www.linkedin.com/in/noor-babar-sabri-b55339404" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><b>in</b></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><b>◎</b></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">A little about me</div>
+          <h2>Design with purpose.<br>
+            <span style="color:var(--accent)">Build with care.</span>
+          </h2>
+        </div>
+        <p>
+          I combine clean design, thoughtful details and practical
+          front-end development to create digital experiences people
+          enjoy using.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="panel reveal">
+          <h3>More than just a pretty interface</h3>
+          <p>
+            My focus is creating websites that feel clear, fast and
+            intuitive. From the first sketch to the final responsive
+            layout, I care about accessibility, consistency and the
+            little details that make a site feel considered.
+          </p>
+        </article>
+
+        <article class="panel reveal">
+          <h3>What I bring to a project</h3>
+          <div class="values">
+            <div class="value"><strong>✦ User-first</strong><span>Simple, thoughtful journeys</span></div>
+            <div class="value"><strong>✦ Responsive</strong><span>Polished on every screen</span></div>
+            <div class="value"><strong>✦ Detail-led</strong><span>Consistent visual systems</span></div>
+            <div class="value"><strong>✦ Collaborative</strong><span>Clear communication</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="path-skills-section">
+    <div class="wrap">
+      <div class="section-head path-section-head reveal">
+        <div>
+          <div class="kicker">Learning & toolkit</div>
+          <h2>My Path & Skills</h2>
+        </div>
+        <p>A clear view of my education, current learning, and the tools I use to turn ideas into working projects.</p>
+      </div>
+
+      <div class="path-skills-grid">
+        <div class="path-column" id="education">
+          <div class="column-heading reveal">
+            <span class="column-mark" aria-hidden="true">01</span>
+            <div>
+              <div class="kicker">Career journey</div>
+              <h3>Education & Growth</h3>
+            </div>
+          </div>
+
+          <div class="education-timeline">
+            <article class="edu-entry reveal">
+              <span class="edu-step" aria-hidden="true">01</span>
+              <div class="edu-card edu-card-highlight">
+                <div class="edu-card-top">
+                  <span class="edu-type">Academic achievement</span>
+                  <span class="edu-symbol" aria-hidden="true">✦</span>
+                </div>
+                <h4>Dars-e-Nizami / M.A. Arabic</h4>
+                <p>Jamia-tul-Madina Girls (Dawat-e-Islami). Achieved first position in class.</p>
+                <div class="edu-card-footer">
+                  <span>Jamia-tul-Madina Girls</span>
+                  <span class="edu-badge">First position</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="edu-entry reveal">
+              <span class="edu-step" aria-hidden="true">02</span>
+              <div class="edu-card">
+                <div class="edu-card-top">
+                  <span class="edu-type">Web development training</span>
+                  <span class="edu-symbol" aria-hidden="true">⌘</span>
+                </div>
+                <h4>Modern Web Development</h4>
+                <p>Practical focus on responsive websites, web fundamentals, and interactive user experiences.</p>
+                <div class="edu-card-footer">
+                  <span>Modern web development</span>
+                  <span class="edu-badge">Practical coursework</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="edu-entry reveal">
+              <span class="edu-step" aria-hidden="true">03</span>
+              <div class="edu-card">
+                <div class="edu-card-top">
+                  <span class="edu-type">Certificate</span>
+                  <span class="edu-symbol" aria-hidden="true">✓</span>
+                </div>
+                <h4>FemHack</h4>
+                <p>Participated in FemHack and received a certificate.</p>
+                <div class="edu-card-footer">
+                  <span>FemHack</span>
+                  <span class="edu-badge">Certified</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="edu-entry reveal">
+              <span class="edu-step" aria-hidden="true">04</span>
+              <div class="edu-card">
+                <div class="edu-card-top">
+                  <span class="edu-type">Practical experience</span>
+                  <span class="edu-symbol" aria-hidden="true">↗</span>
+                </div>
+                <h4>Learning Through Projects</h4>
+                <p>Applying new skills through personal projects, design tools and AI-assisted workflows.</p>
+                <div class="edu-card-footer">
+                  <span>Practice-led learning</span>
+                  <span class="edu-badge">Continuous</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="skills-column">
+          <div class="column-heading reveal">
+            <span class="column-mark" aria-hidden="true">02</span>
+            <div>
+              <div class="kicker">Skills by category</div>
+              <h3>Skills & Strengths</h3>
+            </div>
+          </div>
+
+          <div class="skills-board reveal">
+            <div class="skills-board-top">
+              <div>
+                <div class="kicker">Current toolkit</div>
+                <h4>What I’m building with</h4>
+              </div>
+              <span class="skills-board-mark" aria-hidden="true">✳</span>
+            </div>
+
+            <div class="skill-category">
+              <div class="skill-category-heading">
+                <span class="skill-category-icon" aria-hidden="true">⌘</span>
+                <div>
+                  <h4>Frontend Development</h4>
+                  <p>Responsive interfaces and web fundamentals</p>
+                </div>
+              </div>
+              <div class="skill-meter-list">
+                <div class="skill-meter-row">
+                  <div class="skill-meter-label"><span>HTML5</span><small>99%</small></div>
+                  <div class="skill-meter-track" aria-hidden="true"><span style="--meter:99%"></span></div>
+                </div>
+                <div class="skill-meter-row">
+                  <div class="skill-meter-label"><span>CSS3 & Responsive UI</span><small>99%</small></div>
+                  <div class="skill-meter-track" aria-hidden="true"><span style="--meter:99%"></span></div>
+                </div>
+                <div class="skill-meter-row">
+                  <div class="skill-meter-label"><span>JavaScript</span><small>90%</small></div>
+                  <div class="skill-meter-track" aria-hidden="true"><span style="--meter:90%"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <div class="skill-category-heading">
+                <span class="skill-category-icon" aria-hidden="true">✦</span>
+                <div>
+                  <h4>Design & AI Workflows</h4>
+                  <p>Visual design and AI-assisted building</p>
+                </div>
+              </div>
+              <div class="skill-tags">
+                <span>Canva</span>
+                <span>Graphic Design Tools</span>
+                <span>Vibe Coding</span>
+                <span>AI Automation</span>
+              </div>
+            </div>
+
+            <div class="skill-category skill-category-last">
+              <div class="skill-category-heading">
+                <span class="skill-category-icon" aria-hidden="true">↗</span>
+                <div>
+                  <h4>Developer Toolkit</h4>
+                  <p>Backend services, version control and deployment</p>
+                </div>
+              </div>
+              <div class="skill-tags">
+                <span>Git</span>
+                <span>GitHub</span>
+                <span>Vercel</span>
+                <span>Netlify</span>
+                <span>Supabase</span>
+              </div>
+            </div>
+
+            <p class="skills-footnote"><span aria-hidden="true">✦</span> Skills grow through practice — I keep learning with every project.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">Selected concepts</div>
+          <h2>Projects that make ideas real</h2>
+        </div>
+        <p>Explore selected projects and interactive demos.</p>
+      </div>
+
+      <div class="projects" id="projectGrid">
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://serviqo-kappa.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open SERVIQO live project">
+              <img src="serviqo.png.png" alt="SERVIQO local services booking platform preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>01 · SERVIQO — Local Services Booking Platform</h3>
+            <p>A local-services marketplace for discovering providers, booking services, and managing requests. Built with HTML, CSS, React.js, JavaScript, and Supabase; deployed on Vercel.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">Supabase</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://serviqo-kappa.vercel.app/" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://personal-expense-tracker-sabri.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Personal Expense Tracker live project">
+              <img src="ttracker.png" alt="Personal Expense Tracker preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>02 · Personal Expense Tracker</h3>
+            <p>A personal finance app for tracking expenses in PKR, organizing spending by category, and exporting records to PDF or CSV.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://personal-expense-tracker-sabri.netlify.app/" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://whatappschatboot.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp Shopping Assistant live project">
+              <img src="whatapps.png" alt="WhatsApp shopping assistant and Google Sheets order log preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>03 · WhatsApp Shopping Assistant</h3>
+            <p>A WhatsApp shopping assistant that handles customer chats, confirms orders, and records order details in Google Sheets.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">AI Automation</span><span class="tag">WhatsApp</span><span class="tag">Google Sheets</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://whatappschatboot.vercel.app/" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://web-tool-eta-orcin.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open NEXORA AI live project">
+              <img src="AI.png" alt="NEXORA AI developer tools interface preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>04 · NEXORA AI — Developer Tools UI</h3>
+            <p>A developer-tools interface concept with an AI-focused dashboard, organized tool navigation, and a productivity-oriented visual system.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">UI/UX Design</span><span class="tag">Developer Tools</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://web-tool-eta-orcin.vercel.app/" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://profile-flame-five-96.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Profile Card live project">
+              <img src="card.png" alt="Digital profile card UI preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>05 · Profile Card — Digital UI Design</h3>
+            <p>A digital profile-card experience focused on clear information hierarchy, polished styling, and a compact, easy-to-scan layout.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">UI Design</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://profile-flame-five-96.vercel.app/" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://walimacards.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Luxury Walima Invitation live project">
+              <img src="Walima.png" alt="Luxury Walima digital invitation preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>06 · Luxury Walima Invitation Card</h3>
+            <p>An interactive digital wedding invitation with an opening envelope, event details, map access, and WhatsApp sharing.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">WhatsApp Sharing</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://walimacards.vercel.app/" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="preview">
+            <a href="https://figma-clone-nu-one.vercel.app/index.html" target="_blank" rel="noopener noreferrer" aria-label="Open Figma Design to Code live project">
+              <img src="TOTC.png" alt="Figma-inspired design-to-code website preview" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h3>07 · Figma Design to Code</h3>
+            <p>A Figma-inspired website implementation focused on visual accuracy, typography, spacing, and responsive page layout.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag project-status">Live Project</span></div>
+              <a class="demo" href="https://figma-clone-nu-one.vercel.app/index.html" target="_blank" rel="noopener noreferrer">View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal project-coming-soon">
+          <div class="preview">
+            <img src="hotel.png" alt="Stayora hotel booking platform concept preview" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>08 · Stayora — Hotel Booking Platform</h3>
+            <p>An upcoming hotel-booking platform concept planned around destination discovery, hotel search, and a clear booking flow.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">React/Vite</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag project-status coming-soon">Coming Soon</span></div>
+              <span class="demo coming-soon-label" aria-label="Stayora is coming soon">Coming Soon</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project reveal project-coming-soon">
+          <div class="preview">
+            <img src="five.png" alt="Five Star Restaurant website concept preview" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>09 · Five Star Restaurant</h3>
+            <p>An upcoming restaurant website concept planned around menu browsing, restaurant details, and table-reservation information.</p>
+            <div class="project-bottom">
+              <div class="tags"><span class="tag">Restaurant UI</span><span class="tag">Reservation Flow</span><span class="tag project-status coming-soon">Coming Soon</span></div>
+              <span class="demo coming-soon-label" aria-label="Five Star Restaurant is coming soon">Coming Soon</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-arrow" id="prevProject" aria-label="Previous projects">←</button>
+        <div class="carousel-dots" id="projectDots"></div>
+        <button class="carousel-arrow" id="nextProject" aria-label="Next projects">→</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">Let’s work together</div>
+          <h2>Have a good idea?<br>
+            <span style="color:var(--accent)">Let’s build it.</span>
+          </h2>
+        </div>
+        <p>
+          Share a little about your project. I’ll use the details to
+          understand what you need and what a useful next step could look like.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <article class="panel contact-copy reveal">
+          <div class="kicker">A thoughtful start</div>
+          <div class="big">Your next website should work as beautifully as it looks.</div>
+          <p>
+            From a fresh landing page to a complete portfolio or
+            business website, let’s make the experience clear,
+            memorable and easy to use.
+          </p>
+          <div class="contact-detail"><b>✉</b><a href="mailto:sabriinfo9876@gmail.com">sabriinfo9876@gmail.com</a></div>
+          <div class="contact-detail"><b>in</b><a href="https://www.linkedin.com/in/noor-babar-sabri-b55339404" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></div>
+        </article>
+
+        <form class="panel reveal" id="contactForm" action="https://formsubmit.co/sabriinfo9876@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New portfolio enquiry — Noor Babar Sabri">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://sabrideveloperportfoilo.vercel.app/?contact=sent#contact">
+          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form-row">
+            <label>Your name
+              <input name="name" required placeholder="Full name">
+            </label>
+            <label>Email address
+              <input name="email" type="email" required placeholder="you@example.com">
+            </label>
+          </div>
+
+          <label>What do you need?
+            <select name="service" required>
+              <option value="">Choose a service</option>
+              <option>Portfolio website</option>
+              <option>Business website</option>
+              <option>E-commerce website</option>
+              <option>Landing page</option>
+              <option>Other project</option>
+              <option>AI automation</option>
+            </select>
+          </label>
+
+          <label>Project details
+            <textarea name="message" required placeholder="Tell me about your goals, timeline and ideas..."></textarea>
+          </label>
+
+          <button class="pill" type="submit">Send Project Enquiry ↗</button>
+          <p id="formMessage" class="skill-note" aria-live="polite">
+            Share your project details here and I’ll get back to you by email.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <strong>Noor Babar Sabri <span style="color:var(--accent)">✦</span></strong>
+    <span>Designed with care · Built for the web</span>
+    <a href="#home">Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- JavaScript handles theme switching, carousel controls and contact form. Project card content is static HTML. -->
+<script src="script.js" defer></script>
+</body>
+</html>
